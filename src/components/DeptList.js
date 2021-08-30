@@ -42,6 +42,31 @@ const DeptList = ({ dataDepts }) => {
       >
       New dept
       </button>
+      <ul className={styles.deptList__list}>
+        {dataDepts &&
+          dataDepts.allDepartments &&
+          dataDepts.allDepartments.edges.map((empl) => (
+            <li className={styles.deptList__item} key={empl.node.id}>
+              <span>{empl.node.deptName}</span>
+              <div>
+                <DeleteIcon
+                  className={styles.deptList__delete}
+                  onClick={async () => {
+                    try {
+                      await deleteDept({
+                        variables: {
+                          id: empl.node.id,
+                        },
+                      });
+                    } catch (err) {
+                      alert(err.message);
+                    }
+                  }}
+                />
+              </div>
+            </li>
+        ))}
+      </ul>
     </>
   )
 }

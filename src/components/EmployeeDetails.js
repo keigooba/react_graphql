@@ -3,11 +3,16 @@ import { StateContext } from "../context/StateContext";
 
 const EmployeeDetails = () => {
   const { dataSingleEmployee, errorSingleEmployee } = useContext(StateContext);
-
+  if (errorSingleEmployee)
   return (
     <>
       <h3>Employee Details</h3>
-      {errorSingleEmployee && errorSingleEmployee.message}
+      {errorSingleEmployee.message}
+    </>
+  );
+  return (
+    <>
+      <h3>Employee Details</h3>
       {dataSingleEmployee && dataSingleEmployee.employee && (
         <>
           <h3>ID: </h3>
